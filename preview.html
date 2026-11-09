@@ -1,0 +1,760 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MITU — Практическая работа №2</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #090d0b;
+    --surface: #111915;
+    --surface2: #17221c;
+    --green: #b6f36b;
+    --text: #f2f5f1;
+    --muted: #87938a;
+    --border: rgba(255,255,255,.09);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    width: min(1150px, 90%);
+    margin: auto;
+}
+
+/* NAVIGATION */
+
+nav {
+    height: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--green);
+}
+
+.nav-label {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* HERO */
+
+.hero {
+    padding: 100px 0 75px;
+    position: relative;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: #8bd94b;
+    filter: blur(180px);
+    opacity: .10;
+    top: 20px;
+    right: 0;
+    pointer-events: none;
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px;
+    border: 1px solid rgba(182,243,107,.25);
+    background: rgba(182,243,107,.07);
+    border-radius: 50px;
+    color: var(--green);
+    font-size: 12px;
+    margin-bottom: 28px;
+}
+
+.dot {
+    width: 7px;
+    height: 7px;
+    background: var(--green);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--green);
+}
+
+h1 {
+    font-size: clamp(42px, 7vw, 76px);
+    line-height: 1.05;
+    letter-spacing: -4px;
+    max-width: 800px;
+}
+
+h1 span {
+    color: var(--green);
+}
+
+.hero-description {
+    color: var(--muted);
+    max-width: 540px;
+    margin-top: 25px;
+    font-size: 15px;
+}
+
+.hero-bottom {
+    display: flex;
+    gap: 15px;
+    margin-top: 35px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 14px 22px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 700;
+    transition: .3s;
+    display: inline-block;
+}
+
+.btn-primary {
+    background: var(--green);
+    color: #10180c;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(182,243,107,.2);
+}
+
+.btn-secondary {
+    border: 1px solid var(--border);
+    color: white;
+}
+
+.btn-secondary:hover {
+    border-color: var(--green);
+}
+
+/* SECTIONS */
+
+section {
+    padding: 65px 0;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 30px;
+    gap: 15px;
+}
+
+.section-number {
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 30px;
+    letter-spacing: -1px;
+}
+
+.section-description {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* CARDS */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(182,243,107,.35);
+}
+
+.card-content {
+    padding: 25px;
+}
+
+.card-icon {
+    width: 42px;
+    height: 42px;
+    background: rgba(182,243,107,.1);
+    color: var(--green);
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    font-size: 19px;
+    margin-bottom: 8px;
+}
+
+.card p {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 20px;
+}
+
+.card-link {
+    color: var(--green);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.card img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    display: block;
+}
+
+/* DOCUMENTS */
+
+.document-box {
+    background: linear-gradient(120deg, #18251b, #111915);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.document-info {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.pdf-icon {
+    background: rgba(182,243,107,.12);
+    color: var(--green);
+    padding: 18px;
+    border-radius: 12px;
+    font-size: 25px;
+}
+
+.document-info h3 {
+    font-size: 16px;
+}
+
+.document-info p {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+/* TABLE */
+
+.table-wrapper {
+    overflow-x: auto;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 15px;
+}
+
+table {
+    width: 100%;
+    min-width: 750px;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 12px;
+}
+
+th {
+    padding: 17px 10px;
+    color: var(--muted);
+    font-size: 11px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+}
+
+td {
+    padding: 16px 10px;
+    border-bottom: 1px solid var(--border);
+}
+
+tbody tr {
+    transition: .2s;
+}
+
+tbody tr:hover {
+    background: rgba(182,243,107,.045);
+}
+
+.team {
+    text-align: left;
+    font-weight: 700;
+}
+
+.team-number {
+    color: var(--muted);
+}
+
+.diagonal {
+    background: #27332b;
+}
+
+.goals {
+    color: var(--green);
+    font-weight: 700;
+}
+
+.points {
+    color: var(--green);
+    font-weight: 800;
+    font-size: 15px;
+}
+
+.table-title {
+    margin-bottom: 25px;
+}
+
+/* CONTACT */
+
+.contact-box {
+    background: var(--green);
+    color: #11180e;
+    border-radius: 18px;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.contact-box h2 {
+    font-size: 30px;
+}
+
+.contact-box p {
+    opacity: .7;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+.contact-btn {
+    background: #10180e;
+    color: white;
+    padding: 14px 23px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* FOOTER */
+
+footer {
+    border-top: 1px solid var(--border);
+    padding: 30px 0;
+    margin-top: 60px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 700px) {
+    .hero {
+        padding: 70px 0 50px;
+    }
+
+    h1 {
+        letter-spacing: -2px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .section-header {
+        align-items: start;
+        flex-direction: column;
+    }
+
+    .document-box,
+    .contact-box {
+        align-items: start;
+        flex-direction: column;
+    }
+
+    .contact-box h2 {
+        font-size: 24px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <nav>
+        <div class="logo">M<span>.</span>ITU</div>
+        <div class="nav-label">ПРАКТИЧЕСКАЯ РАБОТА №02</div>
+    </nav>
+
+    <!-- HERO -->
+
+    <header class="hero">
+
+        <div class="tag">
+            <span class="dot"></span>
+            ИНФОРМАЦИОННЫЕ ТЕХНОЛОГИИ
+        </div>
+
+        <h1>
+            Создание<br>
+            гипертекстовых<br>
+            <span>ссылок.</span>
+        </h1>
+
+        <p class="hero-description">
+            Практическая работа по HTML.
+            Изучение гиперссылок, изображений,
+            документов и структуры HTML-таблиц.
+        </p>
+
+        <div class="hero-bottom">
+            <a href="#links" class="btn btn-primary">
+                Начать просмотр ↗
+            </a>
+
+            <a href="#tournament" class="btn btn-secondary">
+                Турнирная таблица
+            </a>
+        </div>
+
+    </header>
+
+    <!-- LINKS -->
+
+    <section id="links">
+
+        <div class="section-header">
+            <div>
+                <div class="section-number">01 / HYPERLINKS</div>
+                <h2>Полезные ссылки</h2>
+            </div>
+
+            <p class="section-description">
+                Университет и учебные материалы
+            </p>
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-icon">↗</div>
+                    <h3>Сайт университета</h3>
+                    <p>
+                        Официальный сайт МИТУ.
+                        Узнайте больше об университете.
+                    </p>
+                    <a class="card-link"
+                       href="https://metu.edu.kz/"
+                       target="_blank">
+                        Перейти на сайт →
+                    </a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-icon">⌂</div>
+                    <h3>Фото корпуса</h3>
+                    <p>
+                        Фотография нового корпуса университета.
+                    </p>
+                    <a class="card-link"
+                       href="images/korpus.jpg"
+                       target="_blank">
+                        Открыть фотографию →
+                    </a>
+                </div>
+
+                <a href="images/korpus.jpg" target="_blank">
+                    <img src="images/korpus.jpg"
+                         alt="Корпус университета">
+                </a>
+            </div>
+
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-icon">▣</div>
+                    <h3>Наша кафедра</h3>
+                    <p>
+                        Информация о кафедре университета.
+                        Нажмите на изображение.
+                    </p>
+                    <a class="card-link"
+                       href="https://metu.edu.kz/"
+                       target="_blank">
+                        Подробнее →
+                    </a>
+                </div>
+
+                <a href="https://metu.edu.kz/" target="_blank">
+                    <img src="images/kafedra.jpg"
+                         alt="Кафедра университета">
+                </a>
+            </div>
+
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-icon">✉</div>
+                    <h3>Обратная связь</h3>
+                    <p>
+                        Свяжитесь со мной по электронной почте
+                        или через Telegram.
+                    </p>
+                    <a class="card-link"
+                       href="mailto:islamrtr@gmail.com">
+                        Написать письмо →
+                    </a>
+                    <br><br>
+                    <a class="card-link"
+                       href="https://t.me/isagls"
+                       target="_blank">
+                        Telegram →
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- DOCUMENT -->
+
+    <section>
+        <div class="section-header">
+            <div>
+                <div class="section-number">02 / DOCUMENTS</div>
+                <h2>Учебные материалы</h2>
+            </div>
+        </div>
+
+        <div class="document-box">
+            <div class="document-info">
+                <div class="pdf-icon">PDF</div>
+                <div>
+                    <h3>Академическая мобильность</h3>
+                    <p>Учебный документ университета</p>
+                </div>
+            </div>
+
+            <a href="files/document.pdf"
+               download
+               class="btn btn-primary">
+                Скачать документ ↓
+            </a>
+        </div>
+    </section>
+
+    <!-- TOURNAMENT -->
+
+    <section id="tournament">
+
+        <div class="section-header">
+            <div>
+                <div class="section-number">03 / RESULTS</div>
+                <h2>Турнирная таблица</h2>
+            </div>
+
+            <p class="section-description">
+                Чемпионат города по хоккею
+            </p>
+        </div>
+
+        <div class="table-wrapper">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Команда</th>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>6</th>
+                        <th>Шайбы</th>
+                        <th>Очки</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class="team-number">01</td>
+                        <td class="team">РОТОР</td>
+                        <td class="diagonal"></td>
+                        <td>2:6</td>
+                        <td>2:3</td>
+                        <td>7:3</td>
+                        <td>2:1</td>
+                        <td>0:0</td>
+                        <td class="goals">17—11</td>
+                        <td class="points">7</td>
+                    </tr>
+
+                    <tr>
+                        <td class="team-number">02</td>
+                        <td class="team">РОТАТОР</td>
+                        <td>4:6</td>
+                        <td class="diagonal"></td>
+                        <td>5:4</td>
+                        <td>5:3</td>
+                        <td>5:5</td>
+                        <td>2:2</td>
+                        <td class="goals">21—20</td>
+                        <td class="points">6</td>
+                    </tr>
+
+                    <tr>
+                        <td class="team-number">03</td>
+                        <td class="team">УРОЖАЙ</td>
+                        <td>3:2</td>
+                        <td>4:5</td>
+                        <td class="diagonal"></td>
+                        <td>0:1</td>
+                        <td>11:2</td>
+                        <td>14:4</td>
+                        <td class="goals">32—15</td>
+                        <td class="points">6</td>
+                    </tr>
+
+                    <tr>
+                        <td class="team-number">04</td>
+                        <td class="team">МАТЧА</td>
+                        <td>3:7</td>
+                        <td>3:5</td>
+                        <td>0:1</td>
+                        <td class="diagonal"></td>
+                        <td>1:1</td>
+                        <td>10:0</td>
+                        <td class="goals">18—13</td>
+                        <td class="points">5</td>
+                    </tr>
+
+                    <tr>
+                        <td class="team-number">05</td>
+                        <td class="team">МЕЧТА</td>
+                        <td>3:2</td>
+                        <td>5:5</td>
+                        <td>2:11</td>
+                        <td>1:1</td>
+                        <td class="diagonal"></td>
+                        <td>8:3</td>
+                        <td class="goals">17—22</td>
+                        <td class="points">4</td>
+                    </tr>
+
+                    <tr>
+                        <td class="team-number">06</td>
+                        <td class="team">ОКАЗИЯ</td>
+                        <td>0:0</td>
+                        <td>2:2</td>
+                        <td>4:14</td>
+                        <td>0:10</td>
+                        <td>3:8</td>
+                        <td class="diagonal"></td>
+                        <td class="goals">9—34</td>
+                        <td class="points">2</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+
+    <section>
+        <div class="contact-box">
+            <div>
+                <h2>Есть вопросы?</h2>
+                <p>Свяжитесь со мной удобным способом.</p>
+            </div>
+
+            <a href="mailto:islamrtr@gmail.com"
+               class="contact-btn">
+                Написать мне ↗
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div>© 2026 MITU — HTML PRACTICE</div>
+            <div>Создано в рамках практической работы №2</div>
+        </div>
+    </footer>
+
+</div>
+
+</body>
+</html>
